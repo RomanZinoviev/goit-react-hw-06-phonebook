@@ -17,18 +17,18 @@ function contactsFromLs  ()  {
 const contactsSlice = createSlice({
     name: "contacts",
     initialState: {
-        contacts: contactsFromLs(),
+        items: contactsFromLs(),
         filter:""
     },
     reducers: {
         submitHundler(state, action) {
-            state.contacts.push(action.payload.nameObj)
+            state.items.push(action.payload.nameObj)
         },
       hundleChange(state, action) {
         state.filter = action.payload.value;
          },
         deleteForList(state, action) { 
-            state.contacts=state.contacts.filter(contact=>contact.id!==action.payload.id)
+            state.items=state.items.filter(contact=>contact.id!==action.payload.id)
         },
     },
 });

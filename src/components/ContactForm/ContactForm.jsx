@@ -10,7 +10,7 @@ export function ContactForm () {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
 
-  const array = useSelector(state => state.contacts.contacts);
+  const array = useSelector(state => state.contacts.items);
   const dispatch = useDispatch();
   
   const reset = () => {
