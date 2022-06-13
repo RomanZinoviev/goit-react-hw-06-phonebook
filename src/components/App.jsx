@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
+import { useSelector } from 'react-redux';
 export function App() {
   const [contacts, setContacts] = useState(contactsFromLs());
   const [filter, setFilter] = useState('');
+  
   const filtredNames = contacts.filter(contact => {
     return contact.name.toLowerCase().includes(filter.toLowerCase());
   });
