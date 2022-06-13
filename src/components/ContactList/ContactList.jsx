@@ -1,21 +1,20 @@
 import React from "react";
 import { ContactLustElement } from "components/ContactLustElement/ContactLustElement";
+import { useSelector } from "react-redux";
 import s from "../ContactList/ContactList.module.css";
-import PropTypes from 'prop-types';
 
-export function ContactList({array, deleteHundler}){
+export function ContactList() {
+   const contacts = useSelector(state => state.contacts.contacts);
+  const filter = useSelector(state => state.contacts.filter);  
+
+  const filtredNames = contacts.filter(contact => {
+    return contact.name.toLowerCase().includes(filter.toLowerCase());
+  });
     return (
         <ul className={s.list}>
-           { array.map(({id, name, number})=> <ContactLustElement key={id} name={name} number={number} deleteHundler={()=>deleteHundler(id)}/>)}
+           { filtredNames.map(({id, name, number})=> <ContactLustElement key={id} name={name} number={number} id={id} />)}
           </ul>
     )
 };
-ContactList.propTypes = {
-     array: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    number:PropTypes.string.isRequired
-  })),
-  deleteHundler:PropTypes.func.isRequired
-}
+
 

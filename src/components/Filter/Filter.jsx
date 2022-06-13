@@ -1,8 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { hundleChange } from 'redux/contactsSlice';
 import s from '../Filter/Filter.module.css';
 
-export function Filter({ value, onChange }) {
+export function Filter() {
+
+  const value = useSelector(state => state.contacts.filter);
+  const dispatch = useDispatch();
+  const onChange = (e) => (dispatch(hundleChange({value:e.target.value})));
+
   return (
     <label className={s.label}>
       Find contacts by name
@@ -16,7 +23,4 @@ export function Filter({ value, onChange }) {
     </label>
   );
 };
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange:PropTypes.func.isRequired
-}
+
